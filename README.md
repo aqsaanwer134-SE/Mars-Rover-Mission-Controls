@@ -54,37 +54,47 @@ Non-functional requirements describe **how well** the system performs.
 
 ## 3️⃣ Change Requests from Mission Control
 
-### 🔴 CR-01 — Emergency Safety
+### 🔴 CR-01  Emergency Safety
 **Original FR-04:** The rover shall enter Safe Mode when a critical battery or thermal condition is detected.
 
 **Updated FR-04:** The rover shall enter Safe Mode **within 3 seconds** when battery temperature exceeds the critical threshold **or** battery capacity falls below the defined emergency level.
 
 **Analysis:**
 - Adds a measurable timing constraint (previously untestable).
-- Ties into NFR-03 (5s normal command processing) — safety response (3s) is correctly faster than routine operations.
+- Ties into NFR-03 (5s normal command processing)  safety response (3s) is correctly faster than routine operations.
 - Requires new defined parameters: *critical temperature threshold* and *emergency battery capacity level*, which should live in a config/parameters table, not hardcoded.
 
-### 🟢 CR-02 — Mission Expansion
+### 🟢 CR-02  Mission Expansion
 **Original NFR-04:** The system shall support communication with multiple rovers simultaneously.
 
 **Updated NFR-04:** The system shall support **at least 20** simultaneously connected rovers.
 
 **Analysis:**
-- "Multiple" was unverifiable — even 2 rovers would technically pass.
+- "Multiple" was unverifiable  even 2 rovers would technically pass.
 - New version is a hard, testable acceptance criterion.
 - Ripple effect: connection pooling, bandwidth allocation, and authentication (NFR-02) must now scale to 20 concurrent sessions.
 
-### 🔵 CR-03 — Security Upgrade
+### 🔵 CR-03  Security Upgrade
 **Original NFR-02:** Only authenticated Mission Control operators shall be permitted to issue rover commands.
 
 **Updated NFR-02:** The system shall require **authenticated and role-authorized** operators before accepting rover commands.
 
 **Analysis:**
 - Adds **authorization** (role-based access control) on top of **authentication** (identity check).
-- Enforces least-privilege access — e.g., a "Monitor" role can view telemetry but not send movement commands.
+- Enforces least-privilege access  e.g., a "Monitor" role can view telemetry but not send movement commands.
 - Ripple effect: FR-03 (reject unauthorized commands) must now check role, and FR-06 (event logging) should log operator role alongside operator ID.
 
 ---
+
+## 📊 Updated Requirements Baseline
+
+| ID | Status | Updated Statement |
+|----|--------|--------------------|
+| FR-04 | Modified (CR-01) | Enter Safe Mode within 3s of critical battery/thermal threshold breach |
+| NFR-04 | Modified (CR-02) | Support ≥ 20 simultaneous rover connections |
+| NFR-02 | Modified (CR-03) | Require authentication **and** role-based authorization before command acceptance |
+| FR-03, FR-06 | Indirectly affected | Must be updated to reflect role-checking and role logging |
+
 
 | FR-07 *(implied)* | The system shall support command routing to a specific rover among multiple rovers. |
 
