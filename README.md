@@ -40,5 +40,17 @@ Functional requirements describe **what the system must do**.
 | FR-05 | Mission Control shall receive command execution status (success/failure feedback). |
 | FR-06 | All commands and critical rover events shall be recorded with timestamp and operator ID. |
 
+## 2️⃣ Non-Functional Requirements (NFRs)
+
+Non-functional requirements describe **how well** the system performs.
+
+| ID | Requirement | Category |
+|----|-------------|----------|
+| NFR-01 | The system shall continue operating despite temporary communication interruptions. | Reliability / Fault Tolerance |
+| NFR-02 | Only authenticated Mission Control operators shall be allowed to issue commands. | Security |
+| NFR-03 | Command processing should normally complete within 5 seconds after a command is received by the rover. | Performance |
+| NFR-04 | The system shall support communication with multiple rovers simultaneously. | Scalability |
+| NFR-05 *(implied)* | The system shall operate reliably under low-bandwidth, high-latency links without requiring repeated command retransmission. | Reliability / Network Constraint |
+
 | FR-07 *(implied)* | The system shall support command routing to a specific rover among multiple rovers. |
 
