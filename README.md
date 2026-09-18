@@ -1,7 +1,4 @@
-# Mars-Rover-Mission-Controls
-Requirements analysis &amp; change management case study for a Mars Rover Mission Control system  FR/NFR extraction, traceability, and CR handling.
-
-# 🚀 Mars Rover Mission Control
+#  Mars Rover Mission Control
 
 A requirements-engineering case study for a Mars rover command-and-control system. 
 Covers functional & non-functional requirement extraction from engineering notes, 
